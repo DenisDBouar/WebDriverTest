@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="3" passed="3">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="85894" started-at="2015-07-22T01:33:07Z" finished-at="2015-07-22T01:34:32Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="85894" started-at="2015-07-22T01:33:07Z" finished-at="2015-07-22T01:34:32Z">
+      <class name="newTest.TestWebDriver.testNgTest_1Test">
+        <test-method status="PASS" signature="beforeClass()[pri:0, instance:newTest.TestWebDriver.testNgTest_1Test@391fc13d]" name="beforeClass" is-config="true" duration-ms="22993" started-at="2015-07-21T18:33:07Z" finished-at="2015-07-21T18:33:30Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeClass -->
+        <test-method status="PASS" signature="startMainPage()[pri:0, instance:newTest.TestWebDriver.testNgTest_1Test@391fc13d]" name="startMainPage" duration-ms="7141" started-at="2015-07-21T18:33:30Z" finished-at="2015-07-21T18:33:37Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- startMainPage -->
+        <test-method status="PASS" signature="TestsSetCloudCreditsQty(java.lang.String)[pri:0, instance:newTest.TestWebDriver.testNgTest_1Test@391fc13d]" name="TestsSetCloudCreditsQty" duration-ms="34762" started-at="2015-07-21T18:33:37Z" data-provider="dp" depends-on-methods="newTest.TestWebDriver.testNgTest_1Test.startMainPage" finished-at="2015-07-21T18:34:12Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[milk]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TestsSetCloudCreditsQty -->
+        <test-method status="PASS" signature="TestsSetCloudCreditsQty(java.lang.String)[pri:0, instance:newTest.TestWebDriver.testNgTest_1Test@391fc13d]" name="TestsSetCloudCreditsQty" duration-ms="3298" started-at="2015-07-21T18:34:12Z" data-provider="dp" depends-on-methods="newTest.TestWebDriver.testNgTest_1Test.startMainPage" finished-at="2015-07-21T18:34:15Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[jins]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- TestsSetCloudCreditsQty -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:newTest.TestWebDriver.testNgTest_1Test@391fc13d]" name="afterTest" is-config="true" duration-ms="17519" started-at="2015-07-21T18:34:15Z" finished-at="2015-07-21T18:34:32Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+      </class> <!-- newTest.TestWebDriver.testNgTest_1Test -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
