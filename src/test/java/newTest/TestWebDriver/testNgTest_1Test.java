@@ -1,9 +1,11 @@
 package newTest.TestWebDriver;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import framework.Constants;
@@ -13,17 +15,18 @@ public class testNgTest_1Test {
   private Constants constt;
   Selenium libAction;
   
+  @Parameters({ "browser" })
   @BeforeClass
-  public void beforeClass() {
+  public void beforeClass(String browser) {
 	  constt = new Constants();
 	  constt.setObjectsPaths("page_property\\Page_Home.properties");
 	  constt.setOutputData("test_property\\Search_validation.properties");
 	  
 	  libAction = new Selenium();
-	  libAction.openWebBrowser("chrome");
+	  libAction.openWebBrowser(browser);
   }
   
-  @AfterTest
+  @AfterClass
   public void afterTest() {
 	  libAction.driverQuit();
   }

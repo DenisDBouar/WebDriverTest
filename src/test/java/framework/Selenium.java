@@ -1,12 +1,12 @@
 package framework;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -14,19 +14,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.openqa.selenium.JavascriptExecutor;
 
 	public class Selenium {
-	private String timeStemp;
-	private String testFolderPath;
 	private String imagesFolderPath;
-	private String baseUrl;
-	 WebDriver driver = null;
+	WebDriver driver = null;
 	 
 	/**
 	 * openWebBrowser("firefox"); firefox, ie, chrome
@@ -68,6 +63,11 @@ import org.openqa.selenium.JavascriptExecutor;
 			if(screenShot)doScreenshots(testName);
 			break;
 			}
+		case "LINK":{
+			findXPathAndClic(testName, action[1], getType);
+			if(screenShot)doScreenshots(testName);
+			break;
+			}
 		default:
 			break;
 	}
@@ -90,8 +90,6 @@ import org.openqa.selenium.JavascriptExecutor;
 	}
 	
 	public void findXPathIframeAndClic(String testName, String iframe, String path, String getType) {
-		/*DEBUG*/System.out.println("log>>" + testName);
-		
 		WebElement element = driver.findElement(getElementByType(iframe, "classname"));
 		driver.switchTo().frame(element);
 		driver.findElement(getElementByType(path, getType)).click();
@@ -178,6 +176,7 @@ import org.openqa.selenium.JavascriptExecutor;
 		}
 		return by;
 	}
+	
 	public boolean isElementPresent(String path, String getType){
 		try {
 		      WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -188,6 +187,34 @@ import org.openqa.selenium.JavascriptExecutor;
 			  System.out.println("Path [" + path + "] was not found");
 		      return false;
 		    }
+	}
+	
+	public ArrayList<String> getListString(String path, String getType){
+		ArrayList<String> elem = null;
+		try {
+			List<WebElement> allElements = driver.findElements(getElementByType(path, getType)); 
+				for (WebElement element: allElements) {
+					 elem.add(element.getText());
+				}
+		    } 
+		catch (Exception e) {
+			  System.out.println("Path [" + path + "] was not found");
+		    }
+		return elem;
+	}
+	
+	public ArrayList<String> getOutputListString(String path){
+		ArrayList<String> elem = null;
+		try {
+			String[] array = path.split("##");
+			for (String element: array) {
+				elem.add(element);
+			}
+		} 
+		catch (Exception e) {
+			System.out.println("Path [" + path + "] was not found");
+		}
+		return elem;
 	}
 	
 	public void isElementPresent(String testName, String path, String getType) {
@@ -215,14 +242,14 @@ import org.openqa.selenium.JavascriptExecutor;
 	 * @param getType   xpath, id, class
 	 * @param delay     delay before starting method 10 = 1sec
 	 */
-	public String getText(String testName, String path, String getType ,int delay) {
+	public String getText(String testName, String path, String getType) {
 		Assert.assertTrue(isElementPresent(path, getType), testName);
 		return driver.findElement(getElementByType(path, getType)).getText();
 	}
 	
-	public boolean compareValue(String testName, String expected, String path, String getType ,int delay){
+	public boolean compareValue(String testName, String expected, String path, String getType){
 		try{
-			Assert.assertEquals(getText(testName, path, getType ,delay), expected);
+			Assert.assertEquals(getText(testName, path, getType), expected);
 			return true;
 		}
 		catch (AssertionError e){
